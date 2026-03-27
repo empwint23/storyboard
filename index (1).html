@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive storyboard showcasing attachable heel innovation - transforming shoes for any occasion">
+    <meta property="og:title" content="A Day in the Life - Attachable Heels Innovation">
+    <meta property="og:description" content="See how one pair of shoes can become infinite looks">
+    <meta property="og:type" content="website">
+    
+    <title>A Day in the Life - Attachable Heels Innovation</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --secondary: #764ba2;
+            --accent: #FFD700;
+            --dark: #2d3748;
+            --light-gray: #f7fafc;
+            --medium-gray: #e2e8f0;
+            --text-dark: #2d3748;
+            --text-light: #4a5568;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Landing Page */
+        .landing-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .landing-page.hidden {
+            display: none;
+        }
+
+        .landing-hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .landing-hero .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .landing-hero .tagline {
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .landing-stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1.6s ease-out;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: none;
+        }
+
+        .main-container.active {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Storyboard View */
+        .storyboard-view {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .scene {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .scene.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scene-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .scene-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .scene-time {
+            color: var(--primary);
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .scene-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            min-height: 450px;
+        }
+
+        /* Image Container - Easy to replace with actual images */
+        .scene-visual {
+            background: var(--light-gray);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--medium-gray);
+            min-height: 400px;
+        }
+
+        /* THIS IS WHERE YOUR AI IMAGES WILL GO */
+        .scene-image {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            background-color: var(--light-gray);
+        }
+
+        .scene-caption {
+            font-size: 1.1em;
+            color: var(--text-light);
+            text-align: center;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .scene-story {
+            padding: 20px;
+        }
+
+        .scene-title {
+            font-size: 2.2em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .scene-description {
+            font-size: 1.2em;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .scene-thought {
+            background: #fff5e1;
+            border-left: 4px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #92400e;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .scene-problem {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            border-radius: 8px;
+            color: #991b1b;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .scene-solution {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+            padding: 20px;
+            border-radius: 8px;
+            color: #065f46;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--medium-gray);
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #cbd5e0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .dot:hover {
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            transform: scale(1.3);
+        }
+
+        .scene-counter {
+            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Grid View */
+        .grid-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        .grid-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .grid-view {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .grid-view.active {
+            display: grid;
+        }
+
+        .grid-scene {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .grid-scene:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .grid-scene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .grid-scene-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .grid-scene-time {
+            color: var(--primary);
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .grid-scene-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 15px 0;
+            background: var(--light-gray);
+        }
+
+        .grid-scene-title {
+            font-size: 1.3em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .grid-scene-desc {
+            font-size: 0.95em;
+            color: var(--text-light);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Share Button */
+        .share-button {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: white;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        .share-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .landing-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .scene-content {
+                grid-template-columns: 1fr;
+            }
+
+            .storyboard-view {
+                padding: 30px 20px;
+            }
+
+            .scene-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navigation {
+                justify-content: center;
+            }
+
+            .grid-view {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-toggle, .share-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .share-button {
+                bottom: 70px;
+            }
+
+            .home-button {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-hero h1 {
+                font-size: 2em;
+            }
+
+            .landing-hero .subtitle {
+                font-size: 1.3em;
+            }
+
+            .landing-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+
+            .cta-button {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Loading placeholder for images */
+        .loading-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--light-gray) 0%, var(--medium-gray) 50%, var(--light-gray) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            color: var(--text-light);
+            font-size: 1em;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landingPage">
+        <div class="landing-hero">
+            <h1>A Day in the Life</h1>
+            <p class="subtitle">Meet Maya - Sophomore at Northeastern University</p>
+            <p class="tagline">"Why own 10 pairs of shoes when you can have 10 looks?"</p>
+            <button class="cta-button" onclick="startStoryboard()">See Her Story →</button>
+        </div>
+        <div class="landing-stats">
+            <div class="stat">
+                <span class="stat-number">70%</span>
+                <span class="stat-label">Less Waste</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">1 Pair</span>
+                <span class="stat-label">Infinite Looks</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">30 Sec</span>
+                <span class="stat-label">Transform Time</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Storyboard -->
+    <div class="main-container" id="mainContainer">
+        <button class="home-button" onclick="goHome()">← Home</button>
+
+        <div class="header">
+            <h1>Interactive Storyboard</h1>
+            <p>Follow Maya's journey through a typical day</p>
+        </div>
+
+        <div class="storyboard-view" id="slideView">
+            <!-- Scene 1 -->
+            <div class="scene active" data-scene="1">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 1</span>
+                    <span class="scene-time">7:30 AM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene1.jpg" alt="Morning Routine" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene1.jpg here
+                        </div>
+                        <p class="scene-caption">Maya's comfortable morning routine</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">Morning Routine</h2>
+                        <p class="scene-description">
+                            Maya wakes up for her 9am CS class. She has a full day ahead: lectures, 
+                            study group at the library, and then back to her dorm. She reaches for 
+                            her favorite black flats - comfortable, versatile, and perfect for 
+                            walking around campus.
+                        </p>
+                        <div class="scene-thought">
+                            💭 "These flats are perfect for my 10,000 steps across campus today."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 2 -->
+            <div class="scene" data-scene="2">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 2</span>
+                    <span class="scene-time">12:30 PM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene2.jpg" alt="The Invitation" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene2.jpg here
+                        </div>
+                        <p class="scene-caption">A networking opportunity appears</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">The Invitation</h2>
+                        <p class="scene-description">
+                            Between classes, Maya gets a text from her friend Sarah. The marketing 
+                            club is hosting a networking dinner tonight with alumni and local 
+                            professionals. Business casual dress code. This is a great opportunity!
+                        </p>
+                        <div class="scene-thought">
+                            💭 "Wait... I'm in flats all day. I should probably wear heels to look more professional."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 3 -->
+            <div class="scene" data-scene="3">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 3</span>
+                    <span class="scene-time">5:45 PM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene3.jpg" alt="The Problem" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene3.jpg here
+                        </div>
+                        <p class="scene-caption">Time pressure and no good options</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">The Problem</h2>
+                        <p class="scene-description">
+                            Maya only has 15 minutes between her study group and the dinner. She's 
+                            still in her flats from the morning. She thinks about her options: 
+                            rush back to the dorm (15 min each way = miss dinner), wear flats 
+                            (too casual), or buy new heels (no time, no money).
+                        </p>
+                        <div class="scene-problem">
+                            ⚠️ "I can't show up to a professional event in casual flats, but I don't have time or money for new heels!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4 -->
+            <div class="scene" data-scene="4">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 4</span>
+                    <span class="scene-time">5:50 PM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene4.jpg" alt="The Solution" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene4.jpg here
+                        </div>
+                        <p class="scene-caption">Solution in her backpack!</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">The Solution</h2>
+                        <p class="scene-description">
+                            Maya remembers she has her heel attachments in her backpack - they're 
+                            small, lightweight, and always with her. In less than a minute, she 
+                            snaps them onto her flats. The same shoes she wore to class are now 
+                            professional 3-inch heels.
+                        </p>
+                        <div class="scene-solution">
+                            ✓ "Same shoes. Different height. Problem solved. I love that these fit right in my bag!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 5 -->
+            <div class="scene" data-scene="5">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 5</span>
+                    <span class="scene-time">7:15 PM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene5.jpg" alt="Making Connections" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene5.jpg here
+                        </div>
+                        <p class="scene-caption">Professional and confident</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">Making Connections</h2>
+                        <p class="scene-description">
+                            Maya arrives at the dinner looking polished and professional. She 
+                            networks with alumni, exchanges LinkedIn contacts with a marketing 
+                            director, and feels confident. Her shoes look great, and more 
+                            importantly, they're comfortable because they're HER shoes - just elevated.
+                        </p>
+                        <div class="scene-thought">
+                            💭 "I look professional, feel comfortable, and didn't spend $80 on heels I'll wear twice."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 6 -->
+            <div class="scene" data-scene="6">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 6</span>
+                    <span class="scene-time">9:30 PM</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene6.jpg" alt="Back to Comfort" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene6.jpg here
+                        </div>
+                        <p class="scene-caption">Easy switch back to comfort</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">Back to Comfort</h2>
+                        <p class="scene-description">
+                            After the dinner, Maya has a problem set due tomorrow. She heads to 
+                            the library, removes the heel attachments in 10 seconds, and slips 
+                            them back in her bag. Now she's back in comfortable flats for a late 
+                            study session. One pair of shoes, two completely different looks.
+                        </p>
+                        <div class="scene-solution">
+                            ✓ "From class to career event to study session - all with one pair of shoes."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 7 -->
+            <div class="scene" data-scene="7">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 7</span>
+                    <span class="scene-time">Next Morning</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <!-- REPLACE THIS WITH: <img src="images/scene7.jpg" alt="The Impact" class="scene-image"> -->
+                        <div class="scene-image loading-placeholder">
+                            📸 Upload scene7.jpg here
+                        </div>
+                        <p class="scene-caption">One solution, infinite possibilities</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">The Impact</h2>
+                        <p class="scene-description">
+                            Maya's heel attachments have changed how she thinks about shoes. She 
+                            doesn't need separate pairs for every occasion. She has the shoes she 
+                            loves, with the versatility she needs. Less money spent. Less closet 
+                            clutter. Less environmental waste. More freedom to adapt to any situation.
+                        </p>
+                        <div class="scene-solution">
+                            ✓ "Why own 10 pairs of shoes when you can have 10 looks?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-button" id="prevBtn" onclick="changeScene(-1)">← Previous</button>
+                <div class="progress-container">
+                    <div class="progress-dots" id="progressDots"></div>
+                    <span class="scene-counter" id="sceneCounter">Scene 1 of 7</span>
+                </div>
+                <button class="nav-button" id="nextBtn" onclick="changeScene(1)">Next →</button>
+            </div>
+        </div>
+
+        <div class="grid-view" id="gridView">
+            <!-- Grid items will be populated by JavaScript -->
+        </div>
+
+        <button class="share-button" onclick="shareStoryboard()">📤 Share</button>
+        <button class="grid-toggle" onclick="toggleView()">
+            <span id="viewToggleText">View All Scenes</span>
+        </button>
+    </div>
+
+    <script>
+        let currentScene = 1;
+        const totalScenes = 7;
+        let isGridView = false;
+
+        // Scene data for grid view
+        const scenes = [
+            { num: 1, time: '7:30 AM', title: 'Morning Routine', desc: 'Maya starts her day in comfortable flats, perfect for campus life.' },
+            { num: 2, time: '12:30 PM', title: 'The Invitation', desc: 'A networking dinner invitation arrives - business casual required.' },
+            { num: 3, time: '5:45 PM', title: 'The Problem', desc: 'No time to change, no heels available, professional appearance needed.' },
+            { num: 4, time: '5:50 PM', title: 'The Solution', desc: 'Heel attachments transform her flats in 30 seconds.' },
+            { num: 5, time: '7:15 PM', title: 'Making Connections', desc: 'Professional appearance achieved with her own comfortable shoes.' },
+            { num: 6, time: '9:30 PM', title: 'Back to Comfort', desc: 'Quick detachment returns to flats for late-night studying.' },
+            { num: 7, time: 'Next Day', title: 'The Impact', desc: 'One pair of shoes, infinite possibilities for every occasion.' }
+        ];
+
+        // Initialize
+        function init() {
+            initProgressDots();
+            updateSceneCounter();
+            
+            // Check for URL hash
+            const hash = window.location.hash;
+            if (hash) {
+                const sceneNum = parseInt(hash.replace('#scene', ''));
+                if (sceneNum >= 1 && sceneNum <= totalScenes) {
+                    startStoryboard();
+                    goToScene(sceneNum);
+                }
+            }
+        }
+
+        // Start storyboard from landing page
+        function startStoryboard() {
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('active');
+            updateURL(1);
+        }
+
+        // Go home to landing page
+        function goHome() {
+            document.getElementById('landingPage').classList.remove('hidden');
+            document.getElementById('mainContainer').classList.remove('active');
+            window.location.hash = '';
+        }
+
+        // Initialize progress dots
+        function initProgressDots() {
+            const dotsContainer = document.getElementById('progressDots');
+            dotsContainer.innerHTML = '';
+            for (let i = 1; i <= totalScenes; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === 1) dot.classList.add('active');
+                dot.onclick = () => goToScene(i);
+                dot.setAttribute('title', `Scene ${i}`);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update scene counter
+        function updateSceneCounter() {
+            document.getElementById('sceneCounter').textContent = `Scene ${currentScene} of ${totalScenes}`;
+        }
+
+        // Change scene
+        function changeScene(direction) {
+            const newScene = currentScene + direction;
+            if (newScene >= 1 && newScene <= totalScenes) {
+                goToScene(newScene);
+            }
+        }
+
+        // Go to specific scene
+        function goToScene(sceneNumber) {
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.classList.remove('active');
+            });
+
+            const targetScene = document.querySelector(`[data-scene="${sceneNumber}"]`);
+            if (targetScene) {
+                targetScene.classList.add('active');
+                currentScene = sceneNumber;
+
+                // Update dots
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    if (index + 1 === sceneNumber) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+
+                // Update buttons
+                document.getElementById('prevBtn').disabled = sceneNumber === 1;
+                document.getElementById('nextBtn').disabled = sceneNumber === totalScenes;
+
+                // Update counter
+                updateSceneCounter();
+
+                // Update URL
+                updateURL(sceneNumber);
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Update URL with current scene
+        function updateURL(sceneNumber) {
+            window.location.hash = `scene${sceneNumber}`;
+        }
+
+        // Toggle between slide and grid view
+        function toggleView() {
+            const slideView = document.getElementById('slideView');
+            const gridView = document.getElementById('gridView');
+            const toggleText = document.getElementById('viewToggleText');
+
+            isGridView = !isGridView;
+
+            if (isGridView) {
+                slideView.style.display = 'none';
+                gridView.classList.add('active');
+                toggleText.textContent = 'View Slideshow';
+                populateGridView();
+            } else {
+                slideView.style.display = 'block';
+                gridView.classList.remove('active');
+                toggleText.textContent = 'View All Scenes';
+            }
+        }
+
+        // Populate grid view
+        function populateGridView() {
+            const gridView = document.getElementById('gridView');
+            if (gridView.children.length > 0) return;
+
+            scenes.forEach(scene => {
+                const gridScene = document.createElement('div');
+                gridScene.className = 'grid-scene';
+                gridScene.innerHTML = `
+                    <div class="grid-scene-header">
+                        <span class="grid-scene-number">Scene ${scene.num}</span>
+                        <span class="grid-scene-time">${scene.time}</span>
+                    </div>
+                    <div class="grid-scene-image loading-placeholder">📸 Scene ${scene.num}</div>
+                    <h3 class="grid-scene-title">${scene.title}</h3>
+                    <p class="grid-scene-desc">${scene.desc}</p>
+                `;
+                gridScene.onclick = () => {
+                    toggleView();
+                    goToScene(scene.num);
+                };
+                gridView.appendChild(gridScene);
+            });
+        }
+
+        // Share storyboard
+        function shareStoryboard() {
+            const shareData = {
+                title: 'A Day in the Life - Attachable Heels Innovation',
+                text: 'See how one pair of shoes can become infinite looks! Follow Maya\'s story.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(err => console.log('Share failed', err));
+            } else {
+                // Fallback: Copy URL to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (isGridView) return;
+            if (e.key === 'ArrowLeft') changeScene(-1);
+            if (e.key === 'ArrowRight') changeScene(1);
+            if (e.key === 'Home') goToScene(1);
+            if (e.key === 'End') goToScene(totalScenes);
+        });
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
