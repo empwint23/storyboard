@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive storyboard showcasing Clips - transforming shoes for any occasion">
-    <meta property="og:title" content="A Day in the Life - Clips">
+    <meta name="description" content="Interactive storyboard showcasing attachable heel innovation - transforming shoes for any occasion">
+    <meta property="og:title" content="A Day in the Life - Attachable Heels Innovation">
     <meta property="og:description" content="See how one pair of shoes can become infinite looks">
     <meta property="og:type" content="website">
     
-    <title>A Day in the Life - Clips</title>
+    <title>A Day in the Life - Attachable Heels Innovation</title>
     
     <style>
         * {
@@ -726,7 +726,35 @@
                 </div>
             </div>
 
-            <!-- Scene 5 -->
+
+            <!-- Scene 5: How It Works (NEW - Technical Detail) -->
+            <div class="scene" data-scene="8">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 8</span>
+                    <span class="scene-time">How It Works</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <img src="images/scene5_mechanism.png" alt="Attachment Mechanism" class="scene-image">
+                        <p class="scene-caption">The attachment mechanism explained</p>
+                    </div>
+                    <div class="scene-story">
+                        <h2 class="scene-title">How It Works</h2>
+                        <p class="scene-description">
+                            The heel attachment uses a spring-loaded locking mechanism. A small 
+                            receptor is built into the shoe sole, and the heel component slides 
+                            in from the back. When the pins align and lock, you hear an audible 
+                            click confirming secure attachment. To remove, press the release 
+                            button and slide out. Simple, secure, and designed for 5,000+ uses.
+                        </p>
+                        <div class="scene-solution">
+                            ✓ "Click = locked. Press = released. That's it."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 8 -->
             <div class="scene" data-scene="5">
                 <div class="scene-header">
                     <span class="scene-number">Scene 5</span>
@@ -826,7 +854,7 @@
 
     <script>
         let currentScene = 1;
-        const totalScenes = 7;
+        const totalScenes = 8;
         let isGridView = false;
 
         // Scene data for grid view
@@ -835,9 +863,10 @@
             { num: 2, time: '12:30 PM', img: 'images/scene2_invitation.png', title: 'The Invitation', desc: 'A networking dinner invitation arrives - business casual required.' },
             { num: 3, time: '5:45 PM', img: 'images/scene3_problem.png', title: 'The Problem', desc: 'No time to change, no heels available, professional appearance needed.' },
             { num: 4, time: '5:50 PM', img: 'images/scene4_solution.png', title: 'The Solution', desc: 'Heel attachments transform her flats in 30 seconds.' },
-            { num: 5, time: '7:15 PM', img: 'images/scene5_networking.png', title: 'Making Connections', desc: 'Professional appearance achieved with her own comfortable shoes.' },
-            { num: 6, time: '9:30 PM', img: 'images/scene6_library.png', title: 'Back to Comfort', desc: 'Quick detachment returns to flats for late-night studying.' },
-            { num: 7, time: 'Next Day', img: 'images/scene7_impact.png', title: 'The Impact', desc: 'One pair of shoes, infinite possibilities for every occasion.' }
+            { num: 5, time: 'How It Works', img: 'images/scene5_mechanism.png', title: 'Attachment Mechanism', desc: 'Technical detail showing how the heel locks securely into place.' },
+            { num: 6, time: '7:15 PM', img: 'images/scene5_networking.png', title: 'Making Connections', desc: 'Professional appearance achieved with her own comfortable shoes.' },
+            { num: 7, time: '9:30 PM', img: 'images/scene6_library.png', title: 'Back to Comfort', desc: 'Quick detachment returns to flats for late-night studying.' },
+            { num: 8, time: 'Next Day', img: 'images/scene7_impact.png', title: 'The Impact', desc: 'One pair of shoes, infinite possibilities for every occasion.' }
         ];
 
         // Initialize
@@ -985,7 +1014,7 @@
         // Share storyboard
         function shareStoryboard() {
             const shareData = {
-                title: 'A Day in the Life - Clips',
+                title: 'A Day in the Life - Attachable Heels Innovation',
                 text: 'See how one pair of shoes can become infinite looks! Follow Maya\'s story.',
                 url: window.location.href
             };
